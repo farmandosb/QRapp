@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Hello, world!</title>
+</head>
+
+<body class="text-center">
+    <main class="form-signin">
+
+        <form>
+            <img class="mb-4" src="./images/sobresalir.svg" alt="" width="72" height="57">
+            <h1 class="h3 mb-3 fw-normal">Generador QR</h1>
+
+
+
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="btnradio" id="user1" autocomplete="off" checked>
+                <label class="btn btn-outline-primary" for="user1">Uglendys</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="user2" autocomplete="off">
+                <label class="btn btn-outline-primary" for="user2">Leo</label>
+
+            </div>
+
+
+
+
+            <div class="form-floating">
+                <input type="text" class="form-control" id="clave" placeholder="CLAVE">
+                <label for="clave">Clave</label>
+            </div>
+            <div class="form-floating">
+                <input type="text" class="form-control" id="comprobacion" placeholder="Combrobación" readonly>
+                <label for="comprobacion">N° de comprobación</label>
+            </div>
+
+            <a id="btn" class="w-100 btn btn-lg btn-primary">Generar QR</a>
+
+
+            <div class="form-floating" id="qrdiv">
+                <img alt="" title="" id="qrimg" src="./images/500.png" class="qr-image" />
+            </div>
+
+
+            </div>
+
+            <div>
+                <p class="mt-2 mb-2 text-muted">Hecho por <a href="https://www.linkedin.com/in/freddy-armando-suarez" target="_blank">Freddy Suárez</a> &copy;2021</p>
+            </div>
+
+        </form>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="./js/qrcode.min.js"></script>
+
+    <script type="text/javascript">
+        const date = new Date();
+        const date_excel = new Date("01/01/1900");
+        window.onload = function () {
+            var btn = document.getElementById("btn");
+            document.getElementById("comprobacion").value = Math.round(Math.random() * (9999 - 1000) + 1000, 0);
+            if (btn.addEventListener) {
+                btn.addEventListener("click", btnClick, false);
+            } else if (btn.attachEvent) {
+                btn.attachEvent("onclick", btnClick);
+            }
+        };
+
+        let a = "$58";
+        let b = Math.round((date.getTime() - date_excel.getTime()) / (1000 * 3600 * 24), 0);
+        let c = "%";
+        let d = document.getElementById("clave").value;
+        $('#clave').on('input', function () {
+            d = document.getElementById("clave").value;
+
+        });
+
+        let e = "%";
+        let f = "Ugl3nd1s";
+        let g = document.getElementById("comprobacion").value;
+
+        $(':radio[name="btnradio"]').change(function () {
+            var user = $(this).filter(':checked').next('label').text();
+            //alert(user);
+            switch (user) {
+                case "Uglendys":
+                    f = "Ugl3nd1s";
+                    break;
+                case "Leo":
+                    f = "L3o";
+                    break;
+
+                default:
+                    f = "Us3r";
+                    break;
+
+            }
+        });
+        var firstQR = true;
+        function btnClick() {
+            //document.getElementById("qr").setAttribute("src", "");
+            //alert('https://api.qrserver.com/v1/create-qr-code/?data=' + a + b + c + d + e + f + '&amp;size=100x100');
+            //document.getElementById("qr").setAttribute("src", "https://api.qrserver.com/v1/create-qr-code/?data=" + a + b + c + d + e + f + "&amp;");
+            //new QRCode(document.getElementById("qrcode"), a + b + c + d + e + f);
+
+            var placeHolder = document.getElementById("qrimg");
+            if(placeHolder){
+                placeHolder.parentElement.removeChild(placeHolder);
+            }
+            
+
+            if (firstQR) {
+                firstQR=false;
+                nuevoQR = new QRCode(document.getElementById("qrdiv"), {
+                    text: a + b + c + d + e + f,
+                    width: 300,
+                    height: 300,
+                    colorDark: "#000000",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.L
+                });
+            } else {
+                
+              //  alert("hola");
+                nuevoQR.clear();
+                nuevoQR.makeCode(a+b+c+d+e+f);
+            }
+
+
+            //qrcode.makeCode();
+
+            //alert(document.getElementById("clave").value + " ");
+            //alert(document.getElementById("comprobacion").value);
+        }
+    </script>
+</body>
+
+</html>
