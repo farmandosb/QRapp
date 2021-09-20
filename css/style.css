@@ -38,12 +38,13 @@ body {
   border-top-right-radius: 0;
 }
 
-.qr-image{
-    width: 300px;
+#qrdiv > img{
+    width: 100%;
+    padding-top: 10px;
    
 }
 
-#qrcode {
+#qrcode > .qr-image{
   width: 300px;
   
 }
