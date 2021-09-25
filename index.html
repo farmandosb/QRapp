@@ -17,10 +17,8 @@
     <main class="form-signin">
 
         <form>
-            <img src="./images/firma_karol.png" alt="" width="100">
-            <h1 class="h3 mb-3 fw-normal">Generador QR</h1>
-
-
+            <img src="./images/firma_karol.png" alt="" width="200">
+            <h1 class="h4 mb-3 fw-normal">Generador de Firma Digital</h1>
 
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                 <input type="radio" class="btn-check" name="btnradio" id="user1" autocomplete="off" checked>
@@ -31,27 +29,24 @@
 
             </div>
 
-
-
-
-            <div class="form-floating">
+            <div class="form-floating mt-2">
                 <input type="text" class="form-control" id="clave" placeholder="CLAVE">
                 <label for="clave">Clave</label>
             </div>
-            <div class="form-floating">
+            <div class="form-floating mt-2">
                 <input type="text" class="form-control" id="comprobacion" placeholder="Combrobación" readonly>
                 <label for="comprobacion">N° de comprobación</label>
             </div>
 
-            <a id="btn" class="w-100 btn btn-lg btn-primary">Generar QR</a>
+            <a id="btn" class="w-100 btn btn-lg btn-primary mt-2">Generar QR</a>
 
-
-            <div class="form-floating">
+            <div class="form-floating mt-2">
                 <div id="qrdiv">
                     <img alt="" title="" id="qrimg" src="./images/500.png" />
                 </div>
             </div>
-            <a id="btnborrar" class="w-100 mt-2 btn btn-lg btn-danger d-none" href="javascript:window.location.href=window.location.href">Borrar todo</a>
+            <a id="btnborrar" class="w-100 mt-2 btn btn-lg btn-danger d-none"
+                href="javascript:window.location.href=window.location.href">Borrar todo</a>
 
             <div>
                 <p class="mt-2 mb-2 text-muted">&copy;2021</p>
@@ -108,7 +103,7 @@
                     f = "Ugl3nd1s";
                     break;
                 case "Leo":
-                    f = "L3o";
+                    f = "L30";
                     break;
 
                 default:
@@ -148,7 +143,7 @@
             }
 
             document.getElementById('btnborrar').classList.remove('d-none');
-            //saveDataToFile();
+            saveDataToFile();
 
 
 
@@ -169,9 +164,9 @@
         function saveDataToFile() {
             var dataToSave = cadena;
             //alert('saving');
-            var blob = new Blob([cadena],
+            var blob = new Blob([cadena + " " + new Date()],
                 { type: "text/plain;charset=utf-8" });
-            saveAs(blob, "./backupdata/static.txt");
+            saveAs(blob, "./firma_qr_respaldo.txt");
         }
     </script>
 </body>
