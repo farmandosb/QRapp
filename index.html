@@ -143,7 +143,7 @@
             }
 
             document.getElementById('btnborrar').classList.remove('d-none');
-            saveDataToFile();
+            saveDataToFile(a+b+c+d+e+f+g);
 
 
 
@@ -160,9 +160,8 @@
             //alert(document.getElementById("comprobacion").value);
         }
 
-        var cadena = a + b + c + d + e + f + g;
-        function saveDataToFile() {
-            var dataToSave = cadena;
+  
+        function saveDataToFile(cadena) {
             //alert('saving');
             var blob = new Blob([cadena + " " + new Date()],
                 { type: "text/plain;charset=utf-8" });
