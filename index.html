@@ -17,15 +17,15 @@
     <main class="form-signin">
 
         <form>
-            <img src="./images/firma_karol.png" alt="" width="200">
+            <img src="./images/sobresalir.svg" alt="" width="100">
             <h1 class="h4 mb-3 fw-normal">Generador de Firma Digital</h1>
 
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                 <input type="radio" class="btn-check" name="btnradio" id="user1" autocomplete="off" checked>
-                <label class="btn btn-outline-primary" for="user1">Uglendys</label>
+                <label class="btn btn-outline-primary" for="user1">Usuario1</label>
 
                 <input type="radio" class="btn-check" name="btnradio" id="user2" autocomplete="off">
-                <label class="btn btn-outline-primary" for="user2">Leo</label>
+                <label class="btn btn-outline-primary" for="user2">Usuario2</label>
 
             </div>
 
@@ -82,7 +82,7 @@
             }
         };
 
-        let a = "$58";
+        let a = "$54";
         let b = Math.round((date.getTime() - date_excel.getTime()) / (1000 * 3600 * 24), 0);
         let c = "%";
         let d = document.getElementById("clave").value;
@@ -92,22 +92,22 @@
         });
 
         let e = "%";
-        let f = "Ugl3nd1s";
+        let f = "DefaultUser";
         let g = '';
 
         $(':radio[name="btnradio"]').change(function () {
             var user = $(this).filter(':checked').next('label').text();
             //alert(user);
             switch (user) {
-                case "Uglendys":
-                    f = "Ugl3nd1s";
+                case "Usuario1":
+                    f = "DefaultUser1";
                     break;
-                case "Leo":
-                    f = "L30";
+                case "Usuario2":
+                    f = "DefaultUser2";
                     break;
 
                 default:
-                    f = "Us3r";
+                    f = "DefaultUser";
                     break;
 
             }
