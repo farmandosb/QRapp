@@ -71,7 +71,13 @@
     <script type="text/javascript">
 
         const date = new Date();
-        const date_excel = new Date("01/01/1900");
+        date.setHours(0,0,0,0);
+        const date_excel = new Date("12/30/1899");
+        date_excel.setHours(0,0,0,0);
+
+
+        
+Math.ceil((date-date_excel)/(1000*3600*24));
         window.onload = function () {
             var btn = document.getElementById("btn");
 
@@ -83,7 +89,7 @@
         };
 
         let a = "$58";
-        let b = Math.round((date.getTime() - date_excel.getTime()) / (1000 * 3600 * 24), 0);
+        let b = Math.ceil((date-date_excel)/(1000*3600*24));
         let c = "%";
         let d = document.getElementById("clave").value;
         $('#clave').on('input', function () {
@@ -123,6 +129,8 @@
             if (placeHolder) {
                 placeHolder.parentElement.removeChild(placeHolder);
             }
+
+
             g = Math.round(Math.random() * (9999 - 1000) + 1000, 0)
             document.getElementById("comprobacion").value = g;
             if (firstQR) {
